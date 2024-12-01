@@ -88,8 +88,20 @@ Note that the Kraus representation for a map is not unique. We can construct the
 $ K_0 = (sqrt(1 - 3/4 lambda)) I, K_1 = sqrt(lambda/4) sigma_x, K_2 = sqrt(lambda/4) sigma_y, K_3 = sqrt(lambda/4) sigma_z $
 
 === Part (c)
+
 We have
-$ Delta_lambda (rho) = (1 - lambda) rho + lambda/d tr(rho) I $
+$ (d rho)/(d t) = - i [H, rho] + sum_k gamma_k (L_k rho L_k^dagger - 1/2 {L_k^dagger L_k, rho}) $
+
+Since the depolarising channel is purely dissipative, we have $H$ = 0
+
+The parameter $lambda$ is interpreted as $lambda = gamma Delta t$
+
+Thus, we get the Lindblad operators
+
+$ L_1 = sqrt(gamma)sigma_x, L_2 = sqrt(gamma)sigma_y, L_3 = sqrt(gamma)sigma_Z $
+and
+$ (d rho)/(d t) = sum_(k=1)^3 gamma_k (sigma_k rho sigma_k - rho) $
+is the required Lindblad type master equation
 
 == Question 2
 
