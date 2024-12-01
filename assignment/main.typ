@@ -82,3 +82,42 @@ $ A_0 = mat(1,0;0,1), A_1 = mat(0,0;1,0), A_2 = mat(0,1;0,0), A_3 = mat(-1,0;0,1
 
 So, we get a set of Kraus operators $K_i = sqrt(lambda_i)A_i$
 $ K_0 = (sqrt(1 - 3/4 lambda)) I, K_1 = sqrt(lambda/4) mat(0,0;1,0), K_2 = sqrt(lambda/4) mat(0,1;0,0), K_3 = sqrt(lambda/4) mat(-1,0;0,1) $
+
+=== Part (c)
+We have
+$ Delta_lambda (rho) = (1 - lambda) rho + lambda/d tr(rho) I $
+
+== Question 2
+
+$ rho_11 (t) = rho_11 (0)e^(-gamma t) $
+$ rho_12 (t) = rho_12 (0)e^(-2gamma t) $
+Since $rho$ is hermitian, we have $rho_21 = rho_12^*$, and assuming $gamma$ is real
+$ rho_21 (t) = rho_12 (0)^* e^(-2gamma t) $
+Since $tr(rho) = 1$, $rho_22 = 1 - rho_11$
+$ rho_22 (t) = 1 - rho_11 (0) e^(-gamma t) $
+
+Thus, we have
+$ rho(t) = phi.alt(rho(0)) = mat(rho_11 (0)e^(-gamma t), rho_12 (0)e^(-2gamma t);
+               rho_12 (0)^* e^(-2gamma t), 1 - rho_11 (0) e^(-gamma t)) $
+
+
+We now find the $F$-matrix, defined by $F_(i j) = tr(G_i phi.alt(G_j))$, where ${G_i}$ is the matrix basis ${II/sqrt(2), sigma_x/sqrt(2), sigma_y/sqrt(2), sigma_z/sqrt(2)}$
+
+$ F_00 = 1/2 tr(I phi.alt(I)) = 1/2 tr(phi.alt(I)) = 1/2 tr(I) = 1 $
+$ F_01 = 1/2 tr(I phi.alt(sigma_x)) = 1/2 tr(phi.alt(sigma_x)) = 1/2 tr(mat(0,  e^(-2 gamma t); e^(-2 gamma t), 1)) = 1/2 $
+$ F_02 = 1/2 tr(I phi.alt(sigma_y)) = 1/2 tr(phi.alt(sigma_y)) = 1/2 tr(mat(0,  -i e^(-2 gamma t); i e^(-2 gamma t), 1)) = 1/2 $
+$ F_03 = 1/2 tr(I phi.alt(sigma_z)) = 1/2 tr(phi.alt(sigma_z)) = 1/2 tr(mat(e^(-gamma t),  0; 0, 1 - e^(- gamma t))) = 1/2 $
+$ F_10 = 1/2 tr(sigma_x phi.alt(I)) = 1/2 tr(mat(0, 1; 1, 0) mat(e^(-gamma t),  0; 0, 1 - e^(- gamma t))) = 1/2 tr(mat(0, 1 - e^(-gamma t); e^(-gamma t), 0)) = 0 $
+$ F_11 = 1/2 tr(sigma_x phi.alt(sigma_x)) = 1/2 tr(mat(0, 1; 1, 0) mat(0,  e^(-2 gamma t); e^(-2 gamma t), 1)) = 1/2 tr(mat(e^(-2 gamma t), 1; 0, e^(-2 gamma t))) = e^(-2 gamma t) $
+$ F_12 = 1/2 tr(sigma_x phi.alt(sigma_y)) = 1/2 tr(mat(0, 1; 1, 0) mat(0,  -i e^(-2 gamma t); i e^(-2 gamma t), 1)) = 1/2 tr(mat(i e ^(-2 gamma t), 1; 0, -i e^(-2 gamma t))) = 0 $
+$ F_13 = 1/2 tr(sigma_x phi.alt(sigma_z)) = 1/2 tr(mat(0, 1; 1, 0) mat(e^(-gamma t),  0; 0, 1 - e^(- gamma t))) = 1/2 tr(mat(0, 1 - e^(-gamma t); e^(-gamma t), 0)) = 0 $
+$ F_20 = 1/2 tr(sigma_y phi.alt(I)) = 1/2 tr(mat(0, -i; i, 0) mat(e^(-gamma t),  0; 0, 1 - e^(- gamma t))) = 1/2 tr(mat(0, -i + i e^(-gamma t); i e^(-gamma t), 0)) = 0 $
+$ F_21 = 1/2 tr(sigma_y phi.alt(sigma_x)) = 1/2 tr(mat(0, -i; i, 0) mat(0,  e^(-2 gamma t); e^(-2 gamma t), 1)) = 1/2 tr(mat(-i e^(-2 gamma t), -i; 0, i e^(-2 gamma t))) = 0 $
+$ F_22 = 1/2 tr(sigma_y phi.alt(sigma_y)) = 1/2 tr(mat(0, -i; i, 0) mat(0,  -i e^(-2 gamma t); i e^(-2 gamma t), 1)) = 1/2 tr(mat(e^(-2 gamma t), -i; 0, e^(-2 gamma t))) = e^(-2 gamma t) $
+$ F_23 = 1/2 tr(sigma_y phi.alt(sigma_z)) = 1/2 tr(mat(0, -i; i, 0) mat(e^(-gamma t),  0; 0, 1 - e^(- gamma t))) = 1/2 tr(mat(0, -i + i e^(-gamma t); i e^(-gamma t), 0)) = 0 $
+$ F_30 = 1/2 tr(sigma_z phi.alt(I)) = 1/2 tr(mat(1, 0; 0, -1) mat(e^(-gamma t),  0; 0, 1 - e^(- gamma t))) = 1/2 tr(mat(e^(-gamma t), 0; 0, -1 + e^(-gamma t))) = e^(-gamma t) - 1/2 $
+$ F_31 = 1/2 tr(sigma_z phi.alt(sigma_x)) = 1/2 tr(mat(1, 0; 0, -1) mat(0,  e^(-2 gamma t); e^(-2 gamma t), 1)) = 1/2 tr(mat(0, e^(-2 gamma t); -e^(-2 gamma t), -1)) = -1/2 $
+$ F_32 = 1/2 tr(sigma_z phi.alt(sigma_y)) = 1/2 tr(mat(1, 0; 0, -1) mat(0,  -i e^(-2 gamma t); i e^(-2 gamma t), 1)) = 1/2 tr(mat(0, -i e^(-2 gamma t); -i e^(-2 gamma t), -1)) = -1/2 $
+$ F_33 = 1/2 tr(sigma_z phi.alt(sigma_z)) = 1/2 tr(mat(1, 0; 0, -1) mat(e^(-gamma t),  0; 0, 1 - e^(- gamma t))) = 1/2 tr(mat(e^(-gamma t), 0; 0, -1 + e^(-gamma t))) = e^(-gamma t) -1/2 $
+
+$ F = mat(1, 1/2, 1/2, 1/2; 0, e^(-2 gamma t), 0, 0; 0, 0, e^(-2 gamma t), 0; e^(- gamma t) - 1/2, -1/2, -1/2, e^(-gamma t) - 1/2) $
