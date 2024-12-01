@@ -83,6 +83,10 @@ $ A_0 = mat(1,0;0,1), A_1 = mat(0,0;1,0), A_2 = mat(0,1;0,0), A_3 = mat(-1,0;0,1
 So, we get a set of Kraus operators $K_i = sqrt(lambda_i)A_i$
 $ K_0 = (sqrt(1 - 3/4 lambda)) I, K_1 = sqrt(lambda/4) mat(0,0;1,0), K_2 = sqrt(lambda/4) mat(0,1;0,0), K_3 = sqrt(lambda/4) mat(-1,0;0,1) $
 
+Note that the Kraus representation for a map is not unique. We can construct the canonical Kraus operators, which are
+
+$ K_0 = (sqrt(1 - 3/4 lambda)) I, K_1 = sqrt(lambda/4) sigma_x, K_2 = sqrt(lambda/4) sigma_y, K_3 = sqrt(lambda/4) sigma_z $
+
 === Part (c)
 We have
 $ Delta_lambda (rho) = (1 - lambda) rho + lambda/d tr(rho) I $
