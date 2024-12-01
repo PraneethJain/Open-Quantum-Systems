@@ -147,3 +147,11 @@ $ F_32 = 1/2 tr(sigma_z phi.alt(sigma_y)) = 1/2 tr(mat(1, 0; 0, -1) mat(0, -i sq
 $ F_33 = 1/2 tr(sigma_z phi.alt(sigma_z)) = 1/2 tr(mat(1, 0; 0, -1) mat(1-p, 0; 0, p-1)) = 1/2 tr(mat(1-p, 0;0, 1 - p)) = 1-p $
 
 $ F = mat(1, 0, 0, 0; 0, sqrt(1-p), 0, 0; 0, 0, sqrt(1-p), 0; p, 0, 0, 1-p) $
+
+Now, we know that the L matrix is
+$ L = dot(F) F^(-1) $
+
+$ dot(F) = mat(0, 0, 0, 0; 0, -dot(p)/(2 sqrt(1 - p)), 0, 0; 0, 0, -dot(p)/(2 sqrt(1-p)), 0; dot(p), 0, 0, - dot(p)) $
+$ F^(-1) = mat(1, 0, 0, 0; 0, 1/sqrt(1 - p), 0, 0; 0, 0, 1/sqrt(1-p), 0; -p/(1-p), 0, 0, 1/(1-p)) $
+
+$ L = mat(0, 0, 0, 0; 0, -dot(p)/(2(1-p)), 0, 0; 0, 0, -dot(p)/(2(1-p)), 0; dot(p)/(1-p), 0, 0, -dot(p)/(1-p)) $
