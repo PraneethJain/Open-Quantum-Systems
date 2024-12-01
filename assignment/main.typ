@@ -125,33 +125,39 @@ $ F = mat(1, 1/2, 1/2, 1/2; 0, e^(-2 gamma t), 0, 0; 0, 0, e^(-2 gamma t), 0; e^
 == Question 3
 
 The generalised amplitude damping channel for a qubit is defined as
-$ Lambda(mat(rho_00, rho_01; rho_10, rho_11)) = mat(rho_00 + p rho_11, sqrt(1-p)rho_01; sqrt(1-p)rho_10, (1-p)rho_11) $
+$ Lambda(mat(rho_00, rho_01; rho_10, rho_11)) = mat((1-p_1)rho_00 + p_2 rho_11, sqrt(1-p_2) sqrt(1-p_1) rho_01; sqrt(1-p_2) sqrt(1-p_1) rho_10, (1-p_2)rho_11 + p_1 rho_00) $
+
+where $p_arrow.t$ represents qubit excitation probability, and $p_arrow.b$ represents qubit relaxation probability.
+
 
 We now find the $F$-matrix, defined by $F_(i j) = tr(G_i phi.alt(G_j))$, where ${G_i}$ is the matrix basis ${II/sqrt(2), sigma_x/sqrt(2), sigma_y/sqrt(2), sigma_z/sqrt(2)}$
 
-$ F_00 = 1/2 tr(I phi.alt(I)) = 1/2 tr(phi.alt(I)) = 1/2 tr(mat(1+p, 0;0,1-p)) = 1 $
-$ F_01 = 1/2 tr(I phi.alt(sigma_x)) = 1/2 tr(phi.alt(sigma_x)) = 1/2 tr(mat(0, sqrt(1-p); sqrt(1-p), 0)) = 0 $
-$ F_02 = 1/2 tr(I phi.alt(sigma_y)) = 1/2 tr(phi.alt(sigma_y)) = 1/2 tr(mat(0, -i sqrt(1-p); i sqrt(1 - p), 0)) = 0 $
-$ F_03 = 1/2 tr(I phi.alt(sigma_z)) = 1/2 tr(phi.alt(sigma_z)) = 1/2 tr(mat(1-p, 0; 0, p-1)) = 0 $
-$ F_10 = 1/2 tr(sigma_x phi.alt(I)) = 1/2 tr(mat(0, 1;1, 0) mat(1+p,0;0,1-p)) = 1/2 tr(mat(0, 1-p;1+p,0)) = 0 $
-$ F_11 = 1/2 tr(sigma_x phi.alt(sigma_x)) = 1/2 tr(mat(0, 1;1, 0) mat(0, sqrt(1-p); sqrt(1-p), 0)) = 1/2 tr(mat(sqrt(1-p),0;0,sqrt(1-p))) = sqrt(1-p) $
-$ F_12 = 1/2 tr(sigma_x phi.alt(sigma_y)) = 1/2 tr(mat(0, 1;1, 0) mat(0, -i sqrt(1-p); i sqrt(1 - p), 0)) = 1/2 tr(mat(i sqrt(1-p), 0;0,-i sqrt(1-p))) = 0 $
-$ F_13 = 1/2 tr(sigma_x phi.alt(sigma_z)) = 1/2 tr(mat(0, 1;1, 0) mat(1-p, 0; 0, p-1)) = 1/2 tr(mat(0, p-1;1-p,0)) = 0 $
-$ F_20 = 1/2 tr(sigma_y phi.alt(I)) = 1/2 tr(mat(0, -i;i, 0) mat(1+p, 0;0,1-p)) = 1/2 tr(mat(0, -i + i p; i + i p, 0)) = 0 $
-$ F_21 = 1/2 tr(sigma_y phi.alt(sigma_x)) = 1/2 tr(mat(0, -i;i, 0) mat(0, sqrt(1-p); sqrt(1-p), 0)) = 1/2 tr(mat(-i sqrt(1-p), 0; 0, i sqrt(1-p))) = 0 $
-$ F_22 = 1/2 tr(sigma_y phi.alt(sigma_y)) = 1/2 tr(mat(0, -i;i, 0) mat(0,-i sqrt(1-p); i sqrt(1-p), 0)) = 1/2 tr(mat(sqrt(1 - p), 0;0,sqrt(1-p))) = sqrt(1-p) $
-$ F_23 = 1/2 tr(sigma_y phi.alt(sigma_z)) = 1/2 tr(mat(0, -i;i, 0) mat(1-p, 0; 0, p-1)) = 1/2 tr(mat(0, - i p + i; i - i p, 0)) = 0 $
-$ F_30 = 1/2 tr(sigma_z phi.alt(I)) = 1/2 tr(mat(1, 0; 0, -1) mat(1+p, 0;0,1-p)) = 1/2 tr(mat(1+p, 0;0,-1+p)) = p $
-$ F_31 = 1/2 tr(sigma_z phi.alt(sigma_x)) = 1/2 tr(mat(1, 0; 0, -1) mat(0, sqrt(1-p); sqrt(1-p), 0)) = 1/2 tr(mat(0, sqrt(1-p);-sqrt(1-p),0)) = 0 $
-$ F_32 = 1/2 tr(sigma_z phi.alt(sigma_y)) = 1/2 tr(mat(1, 0; 0, -1) mat(0, -i sqrt(1-p); i sqrt(1 - p), 0)) = 1/2 tr(mat(0, -i sqrt(1-p);-i sqrt(1-p),0)) = 0 $
-$ F_33 = 1/2 tr(sigma_z phi.alt(sigma_z)) = 1/2 tr(mat(1, 0; 0, -1) mat(1-p, 0; 0, p-1)) = 1/2 tr(mat(1-p, 0;0, 1 - p)) = 1-p $
+$ F_00 = 1/2 tr(I phi.alt(I)) = 1/2 tr(mat(-p_1 + p_2 + 1,0;0,p_1 - p_2 + 1)) = 1 $
+$ F_01 = 1/2 tr(I phi.alt(sigma_x)) = 1/2 tr(mat(0,sqrt(1 - p_1)*sqrt(1 - p_2);sqrt(1 - p_1)*sqrt(1 - p_2),0)) = 0 $
+$ F_02 = 1/2 tr(I phi.alt(sigma_y)) = 1/2 tr(mat(0,-i*sqrt(1 - p_1)*sqrt(1 - p_2);i * sqrt(1 - p_1)*sqrt(1 - p_2),0)) = 0 $
+$ F_03 = 1/2 tr(I phi.alt(sigma_z)) = 1/2 tr(mat(-p_1 - p_2 + 1,0;0,p_1 + p_2 - 1)) = 0 $
 
-$ F = mat(1, 0, 0, 0; 0, sqrt(1-p), 0, 0; 0, 0, sqrt(1-p), 0; p, 0, 0, 1-p) $
+$ F_10 = 1/2 tr(sigma_x phi.alt(I)) = 1/2 tr(mat(0,p_1 - p_2 + 1;-p_1 + p_2 + 1,0)) = 0 $
+$ F_11 = 1/2 tr(sigma_x phi.alt(sigma_x)) = 1/2 tr(mat(sqrt(1 - p_1)*sqrt(1 - p_2),0;0,sqrt(1 - p_1)*sqrt(1 - p_2))) = sqrt(1-p_1) sqrt(1 - p_2) $
+$ F_12 = 1/2 tr(sigma_x phi.alt(sigma_y)) = 1/2 tr(mat(i*sqrt(1 - p_1)*sqrt(1 - p_2),0;0,-i*sqrt(1 - p_1)*sqrt(1 - p_2))) = 0 $
+$ F_13 = 1/2 tr(sigma_x phi.alt(sigma_z)) = 1/2 tr(mat(0,p_1 + p_2 - 1;-p_1 - p_2 + 1,0)) = 0 $
 
-Now, we know that the L matrix is
-$ L = dot(F) F^(-1) $
+$ F_20 = 1/2 tr(sigma_y phi.alt(I)) = 1/2 tr(mat(0,-i*(p_1 - p_2 + 1);i*(-p_1 + p_2 + 1),0)) = 0 $
+$ F_21 = 1/2 tr(sigma_y phi.alt(sigma_x)) = 1/2 tr(mat(-i*sqrt(1 - p_1)*sqrt(1 - p_2),0;0,i*sqrt(1 - p_1)*sqrt(1 - p_2))) = 0 $
+$ F_22 = 1/2 tr(sigma_y phi.alt(sigma_y)) = 1/2 tr(mat(sqrt(1 - p_1)*sqrt(1 - p_2),0;0,sqrt(1 - p_1)*sqrt(1 - p_2))) = sqrt(1-p_1) sqrt(1-p_2) $
+$ F_23 = 1/2 tr(sigma_y phi.alt(sigma_z)) = 1/2 tr(mat(0,-i*(p_1 + p_2 - 1);i*(-p_1 - p_2 + 1),0)) = 0 $
 
-$ dot(F) = mat(0, 0, 0, 0; 0, -dot(p)/(2 sqrt(1 - p)), 0, 0; 0, 0, -dot(p)/(2 sqrt(1-p)), 0; dot(p), 0, 0, - dot(p)) $
-$ F^(-1) = mat(1, 0, 0, 0; 0, 1/sqrt(1 - p), 0, 0; 0, 0, 1/sqrt(1-p), 0; -p/(1-p), 0, 0, 1/(1-p)) $
+$ F_30 = 1/2 tr(sigma_z phi.alt(I)) = 1/2 tr(mat(-p_1 + p_2 + 1,0;0,-p_1 + p_2 - 1)) = p_2 - p_1 $
+$ F_31 = 1/2 tr(sigma_z phi.alt(sigma_x)) = 1/2 tr(mat(0,sqrt(1 - p_1)*sqrt(1 - p_2);-sqrt(1 - p_1)*sqrt(1 - p_2),0)) = 0 $
+$ F_32 = 1/2 tr(sigma_z phi.alt(sigma_y)) = 1/2 tr(mat(0,-i*sqrt(1 - p_1)*sqrt(1 - p_2);-i*sqrt(1 - p_1)*sqrt(1 - p_2),0)) = 0 $
+$ F_33 = 1/2 tr(sigma_z phi.alt(sigma_z)) = 1/2 tr(mat(-p_1 - p_2 + 1,0;0,-p_1 - p_2 + 1)) = 1 - p_1 - p_2 $
 
-$ L = mat(0, 0, 0, 0; 0, -dot(p)/(2(1-p)), 0, 0; 0, 0, -dot(p)/(2(1-p)), 0; dot(p)/(1-p), 0, 0, -dot(p)/(1-p)) $
+$ F = mat(1, 0, 0, 0; 0, sqrt(1-p_1) sqrt(1-p_2), 0, 0; 0, 0, sqrt(1-p_1) sqrt(1-p_2), 0; p_2 - p_1, 0, 0, 1-p_1-p_2) $
+
+Now, we know that $ L = dot(F) F^(-1) $
+
+$ dot(F) = mat(0, 0, 0, 0; 0, (-(1-p_1)dot(p_2) - (1-p_2)dot(p_1))/(2 sqrt(1-p_1)sqrt(1-p_2)), 0, 0; 0, 0, (-(1-p_1)dot(p_2) - (1-p_2)dot(p_1))/(2 sqrt(1-p_1)sqrt(1-p_2)), 0; dot(p_2)-dot(p_1), 0, 0, -dot(p_1) - dot(p_2)) $
+
+$ F^(-1) = mat(1, 0, 0, 0; 0, 1/(sqrt(1-p_1)sqrt(1-p_2)), 0, 0; 0, 0, 1/(sqrt(1-p_1)sqrt(1-p_2)), 0; (p_2-p_1)/(p_1+p_2-1), 0, 0, 1/(1-p_1-p_2)) $
+
+$ L = mat(0, 0, 0, 0; 0, ((p_1-1)dot(p_2) + (p_2-1)dot(p_1))/(2(p_1-1)(p_2-1)), 0, 0; 0, 0, ((p_1-1)dot(p_2) + (p_2-1)dot(p_1))/(2(p_1-1)(p_2-1)), 0; (2 p_1 dot(p_2) - 2 p_2 dot(p_1) + dot(p_1) - dot(p_2))/(p_1 + p_2 - 1), 0, 0, (dot(p_1) + dot(p_2))/(p_1 + p_2 - 1)) $
