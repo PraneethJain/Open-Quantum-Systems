@@ -1,4 +1,4 @@
-from sympy import symbols, Matrix, sqrt, Function, pprint, trace
+from sympy import symbols, Matrix, sqrt, Function, pprint, trace, exp, conjugate
 
 t = symbols("t")
 p_1 = symbols("p_1", cls=Function)(t)
@@ -48,6 +48,15 @@ def channel(rho, p_1, p_2):
     )
 
 
+def channel2(rho, p_1):
+    return Matrix(
+        [
+            [exp(-p_1) * rho[0, 0], exp(-2 * p_1) * rho[0, 1]],
+            [exp(-2 * p_1) * conjugate(rho[0, 1]), 1 - exp(-p_1) * rho[0, 0]],
+        ]
+    )
+
+
 def typst_print(matrix, dim=2):
     def write(val):
         print(val, end="")
@@ -69,14 +78,18 @@ bases = [identity, sigma_x, sigma_y, sigma_z]
 F_matrix = [[], [], [], []]
 for i, b1 in enumerate(bases):
     for j, b2 in enumerate(bases):
-        # print()
-        Fij_wala_matrix = b1 * channel(b2, p_1, p_2)
-        # print(f"F{i}{j} = ", end="")
-        # typst_print(Fij_wala_matrix)
+        print()
+        Fij_wala_matrix = b1 * channel2(b2, p_1)
+        print(f"F{i}{j} = ", end="")
+        typst_print(Fij_wala_matrix)
         F_matrix[i].append(trace(Fij_wala_matrix) / 2)
 
 F_matrix = Matrix(F_matrix)
 print("\n\nF_matrix: ")
+pprint(F_matrix)
+
+det = F_matrix.det()
+print(det)
 
 F_dot = F_matrix.diff(t)
 F_dot.simplify()

@@ -103,7 +103,7 @@ $ rho(t) = phi.alt(rho(0)) = mat(rho_11 (0)e^(-gamma t), rho_12 (0)e^(-2gamma t)
 
 We now find the $F$-matrix, defined by $F_(i j) = tr(G_i phi.alt(G_j))$, where ${G_i}$ is the matrix basis ${II/sqrt(2), sigma_x/sqrt(2), sigma_y/sqrt(2), sigma_z/sqrt(2)}$
 
-$ F_00 = 1/2 tr(I phi.alt(I)) = 1/2 tr(phi.alt(I)) = 1/2 tr(I) = 1 $
+$ F_00 = 1/2 tr(I phi.alt(I)) = 1/2 tr(phi.alt(I)) = 1/2 tr(mat(e^(-gamma t),0;0,1 - e^(-gamma t))) = 1/2 $
 $ F_01 = 1/2 tr(I phi.alt(sigma_x)) = 1/2 tr(phi.alt(sigma_x)) = 1/2 tr(mat(0,  e^(-2 gamma t); e^(-2 gamma t), 1)) = 1/2 $
 $ F_02 = 1/2 tr(I phi.alt(sigma_y)) = 1/2 tr(phi.alt(sigma_y)) = 1/2 tr(mat(0,  -i e^(-2 gamma t); i e^(-2 gamma t), 1)) = 1/2 $
 $ F_03 = 1/2 tr(I phi.alt(sigma_z)) = 1/2 tr(phi.alt(sigma_z)) = 1/2 tr(mat(e^(-gamma t),  0; 0, 1 - e^(- gamma t))) = 1/2 $
@@ -120,7 +120,11 @@ $ F_31 = 1/2 tr(sigma_z phi.alt(sigma_x)) = 1/2 tr(mat(1, 0; 0, -1) mat(0,  e^(-
 $ F_32 = 1/2 tr(sigma_z phi.alt(sigma_y)) = 1/2 tr(mat(1, 0; 0, -1) mat(0,  -i e^(-2 gamma t); i e^(-2 gamma t), 1)) = 1/2 tr(mat(0, -i e^(-2 gamma t); -i e^(-2 gamma t), -1)) = -1/2 $
 $ F_33 = 1/2 tr(sigma_z phi.alt(sigma_z)) = 1/2 tr(mat(1, 0; 0, -1) mat(e^(-gamma t),  0; 0, 1 - e^(- gamma t))) = 1/2 tr(mat(e^(-gamma t), 0; 0, -1 + e^(-gamma t))) = e^(-gamma t) -1/2 $
 
-$ F = mat(1, 1/2, 1/2, 1/2; 0, e^(-2 gamma t), 0, 0; 0, 0, e^(-2 gamma t), 0; e^(- gamma t) - 1/2, -1/2, -1/2, e^(-gamma t) - 1/2) $
+$ F = mat(1/2, 1/2, 1/2, 1/2; 0, e^(-2 gamma t), 0, 0; 0, 0, e^(-2 gamma t), 0; e^(- gamma t) - 1/2, -1/2, -1/2, e^(-gamma t) - 1/2) $
+
+Clearly, the matrix is not full rank, and thus its determinant is $0$.
+
+Thus, the $F$ matrix corresponding to this map is *not* invertible.
 
 == Question 3
 
