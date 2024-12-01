@@ -126,6 +126,8 @@ Clearly, the matrix is not full rank, and thus its determinant is $0$.
 
 Thus, the $F$ matrix corresponding to this map is *not* invertible.
 
+Also, since this operation cannot be represented by a single unitary, it is also *not* reversible.
+
 == Question 3
 
 The generalised amplitude damping channel for a qubit is defined as
